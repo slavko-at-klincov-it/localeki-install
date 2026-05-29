@@ -74,11 +74,15 @@ prompt_token_if_needed() {
   if ! has_interactive_tty; then
     fail "GitHub token required. Run from an interactive terminal or set GITHUB_TOKEN."
   fi
-  printf 'GitHub token (leer lassen, wenn das Release public ist): '
-  if command -v stty >/dev/null 2>&1; then stty -echo < /dev/tty || true; fi
-  IFS= read -r TOKEN < /dev/tty || true
-  if command -v stty >/dev/null 2>&1; then stty echo < /dev/tty || true; fi
-  printf '\n'
+  { printf 'GitHub token (leer lassen, wenn das Release public ist): ' > /dev/tty; } 2>/dev/null || fail "GitHub token required. Run from an interactive terminal or set GITHUB_TOKEN."
+  if command -v stty >/dev/null 2>&1; then (stty -echo < /dev/tty) >/dev/null 2>&1 || true; fi
+  if ! TOKEN="$( { IFS= read -r token_line < /dev/tty && printf '%s' "$token_line"; } 2>/dev/null )"; then
+    if command -v stty >/dev/null 2>&1; then (stty echo < /dev/tty) >/dev/null 2>&1 || true; fi
+    printf '\n' >&2
+    fail "GitHub token required. Run from an interactive terminal or set GITHUB_TOKEN."
+  fi
+  if command -v stty >/dev/null 2>&1; then (stty echo < /dev/tty) >/dev/null 2>&1 || true; fi
+  { printf '\n' > /dev/tty; } 2>/dev/null || true
 }
 
 extract_asset_url_from_release_json() {
