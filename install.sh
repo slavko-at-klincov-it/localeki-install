@@ -2,12 +2,12 @@
 set -euo pipefail
 
 REPO="${LOKALEKI_GITHUB_REPO:-slavko-at-klincov-it/MasterKI-CrossPlatformIT-runtime}"
-RELEASE_TAG="${LOKALEKI_RELEASE_TAG:-v0.2.0}"
-PACKAGE_NAME="${LOKALEKI_PACKAGE_NAME:-localeki-customer-package-0.2.0.tgz}"
+RELEASE_TAG="${LOKALEKI_RELEASE_TAG:-v0.2.1}"
+PACKAGE_NAME="${LOKALEKI_PACKAGE_NAME:-localeki-customer-package-0.2.1.tgz}"
 INSTALL_ROOT="${LOKALEKI_INSTALL_ROOT:-$HOME/LokaleKI}"
 INSTALLER_ROOT="${LOKALEKI_INSTALLER_ROOT:-$INSTALL_ROOT/installer}"
-ASSET_URL="${LOKALEKI_RELEASE_ASSET_URL:-https://api.github.com/repos/slavko-at-klincov-it/MasterKI-CrossPlatformIT-runtime/releases/assets/433154825}"
-EXPECTED_SHA256="${LOKALEKI_PACKAGE_SHA256:-9282cfb821a0e782838831351cff5e8094a09e500700e28954ccf184501f5e09}"
+ASSET_URL="${LOKALEKI_RELEASE_ASSET_URL:-https://api.github.com/repos/slavko-at-klincov-it/MasterKI-CrossPlatformIT-runtime/releases/assets/433372891}"
+EXPECTED_SHA256="${LOKALEKI_PACKAGE_SHA256:-1371ad577bbee62942a7e10c612cafbb30dd3fc9394b9c7f92f3f6cb0708a555}"
 TOKEN="${LOKALEKI_GITHUB_TOKEN:-${GITHUB_TOKEN:-}}"
 
 log() { printf '[lokaleki-install] %s\n' "$*"; }
@@ -25,8 +25,8 @@ Optional non-interactive token:
 
 Environment overrides:
   LOKALEKI_GITHUB_REPO=owner/repo
-  LOKALEKI_RELEASE_TAG=v0.2.0
-  LOKALEKI_PACKAGE_NAME=localeki-customer-package-0.2.0.tgz
+  LOKALEKI_RELEASE_TAG=v0.2.1
+  LOKALEKI_PACKAGE_NAME=localeki-customer-package-0.2.1.tgz
   LOKALEKI_INSTALL_ROOT=$HOME/LokaleKI
   LOKALEKI_RELEASE_ASSET_URL=https://api.github.com/repos/owner/repo/releases/assets/123
   LOKALEKI_PACKAGE_SHA256=<sha256>
