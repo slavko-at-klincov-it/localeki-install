@@ -17,11 +17,11 @@ usage() {
   cat <<'USAGE'
 LokaleKI quick installer
 
-Default:
+Customer Mac mini:
   curl -fsSL https://raw.githubusercontent.com/slavko-at-klincov-it/localeki-install/main/install.sh | bash
 
-Private repo/bootstrap:
-  curl -fsSL https://raw.githubusercontent.com/slavko-at-klincov-it/localeki-install/main/install.sh | bash
+Optional non-interactive token:
+  GITHUB_TOKEN=<token> bash -c "$(curl -fsSL https://raw.githubusercontent.com/slavko-at-klincov-it/localeki-install/main/install.sh)"
 
 Environment overrides:
   LOKALEKI_GITHUB_REPO=owner/repo
