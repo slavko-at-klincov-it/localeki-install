@@ -6,8 +6,8 @@ RELEASE_TAG="${LOKALEKI_RELEASE_TAG:-v0.2.0}"
 PACKAGE_NAME="${LOKALEKI_PACKAGE_NAME:-localeki-customer-package-0.2.0.tgz}"
 INSTALL_ROOT="${LOKALEKI_INSTALL_ROOT:-$HOME/LokaleKI}"
 INSTALLER_ROOT="${LOKALEKI_INSTALLER_ROOT:-$INSTALL_ROOT/installer}"
-ASSET_URL="${LOKALEKI_RELEASE_ASSET_URL:-}"
-EXPECTED_SHA256="${LOKALEKI_PACKAGE_SHA256:-}"
+ASSET_URL="${LOKALEKI_RELEASE_ASSET_URL:-https://api.github.com/repos/slavko-at-klincov-it/MasterKI-CrossPlatformIT-runtime/releases/assets/433154825}"
+EXPECTED_SHA256="${LOKALEKI_PACKAGE_SHA256:-9282cfb821a0e782838831351cff5e8094a09e500700e28954ccf184501f5e09}"
 TOKEN="${LOKALEKI_GITHUB_TOKEN:-${GITHUB_TOKEN:-}}"
 
 log() { printf '[lokaleki-install] %s\n' "$*"; }
@@ -64,7 +64,7 @@ curl_asset() {
 }
 
 prompt_token_if_needed() {
-  if [ -n "$TOKEN" ] || [ -n "$ASSET_URL" ]; then
+  if [ -n "$TOKEN" ]; then
     return 0
   fi
   if [ ! -r /dev/tty ]; then
