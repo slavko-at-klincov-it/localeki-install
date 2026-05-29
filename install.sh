@@ -13,6 +13,10 @@ TOKEN="${LOKALEKI_GITHUB_TOKEN:-${GITHUB_TOKEN:-}}"
 log() { printf '[lokaleki-install] %s\n' "$*"; }
 fail() { printf '[lokaleki-install][error] %s\n' "$*" >&2; exit 1; }
 
+has_interactive_tty() {
+  [ -r /dev/tty ] && [ -w /dev/tty ] && command -v stty >/dev/null 2>&1 && (stty -a < /dev/tty) >/dev/null 2>&1
+}
+
 usage() {
   cat <<'USAGE'
 LokaleKI quick installer
@@ -67,7 +71,7 @@ prompt_token_if_needed() {
   if [ -n "$TOKEN" ]; then
     return 0
   fi
-  if [ ! -r /dev/tty ]; then
+  if ! has_interactive_tty; then
     fail "GitHub token required. Run from an interactive terminal or set GITHUB_TOKEN."
   fi
   printf 'GitHub token (leer lassen, wenn das Release public ist): '
